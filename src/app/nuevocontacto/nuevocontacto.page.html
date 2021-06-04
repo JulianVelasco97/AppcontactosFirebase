@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>nuevocontacto</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form  (ngSubmit)="nuevo(nuevoContacto)" #nuevoForm="ngForm">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input type="text" name="nombre" [(ngModel)]="nuevoContacto.nombre" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Apellido</ion-label>
+        <ion-input type="text" name="apellido" [(ngModel)]="nuevoContacto.apellido" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Empresa</ion-label>
+        <ion-input type="text" name="empresa" [(ngModel)]="nuevoContacto.empresa" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Telefono</ion-label>
+        <ion-input type="text" name="telefono" [(ngModel)]="nuevoContacto.telefono" required></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Correo</ion-label>
+        <ion-input type="text" name="correo" [(ngModel)]="nuevoContacto.correo" ></ion-input>
+      </ion-item>
+    </ion-list>
+    <div padding>
+      <ion-button color="primary" expand="block" type="submit" [disabled]="!nuevoForm.form.valid">Crear contacto</ion-button>
+    </div>
+  </form>
+</ion-content>
