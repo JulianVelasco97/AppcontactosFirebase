@@ -45,8 +45,7 @@ export class ContactosPage implements OnInit {
         },{
           text:'Modificar contacto',
           handler:() =>{
-            alert(contacto);
-            //this.router.navegateByUrl('editarcontactos');
+            this.editar(contacto);
           }
         },{
           text:'Cancelar',
@@ -59,8 +58,31 @@ export class ContactosPage implements OnInit {
     });
     await actionsheet.present();
   }
-  borrar(contacto){
-    alert("borrar "+contacto);
+  async borrar(contacto:any){
+    const alert=await this.alertCtrl.create({
+      header:'Borrar',
+      message: 'Esta seguro que desea borrar este contacto?',
+      buttons:[
+        {
+          text:'No',
+          role:'cancel',
+          cssClass:'secondary',
+          handler:(blah)=>{
+            console.log('confirm Cancel: blah');
+          }
+        },{
+          text:'Si',
+          handler:()=>{
+            this.contactosService.borrarContacto(contacto);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async editar(contacto:any){
+    this.router.navigate(['tabs/editarcontacto',contacto]);
   }
 
 }

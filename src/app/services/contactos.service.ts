@@ -35,4 +35,31 @@ export class ContactosService {
    getContactos(): Observable<Contacto[]>{
      return this.contactos;
    }
+
+   borrarContacto(contacto:any){
+     this.afs.doc(`contactos/${contacto}`).delete().then(()=>{
+       console.log(`contacto eliminado: "${contacto}"`);
+     }).catch(err=>{
+       console.error(err);
+     })
+   }
+
+   getContacto (id:string):Observable<Contacto>{
+     return this.contactosCollection.doc<Contacto>(id).valueChanges().pipe(
+       take(1),
+       map(contacto=>{
+         contacto.id = id;
+         return contacto
+       })
+     );
+   }
+
+   editarContacto(contacto:Contacto): Promise <void>{
+     return this.contactosCollection.doc(contacto.id).update(
+       {nombre: contacto.nombre,
+        apellido: contacto.apellido,
+        empresa: contacto.empresa,
+        telefono: contacto.telefono,
+        correo: contacto.correo});
+   }
 }

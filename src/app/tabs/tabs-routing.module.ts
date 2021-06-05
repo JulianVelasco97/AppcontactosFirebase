@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('../nuevocontacto/nuevocontacto.module').then( m => m.NuevocontactoPageModule)
       },
       {
+        path: 'editarcontacto/:id',
+        loadChildren: () => import('../editarcontacto/editarcontacto.module').then( m => m.EditarcontactoPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
